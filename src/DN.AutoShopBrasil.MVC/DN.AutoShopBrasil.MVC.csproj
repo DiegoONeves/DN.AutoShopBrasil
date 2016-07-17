@@ -213,6 +213,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DN.AutoShopBrasil.Common\DN.AutoShopBrasil.Common.csproj">
+      <Project>{e1f645c1-08ee-4755-a310-d8b8b6366096}</Project>
+      <Name>DN.AutoShopBrasil.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DN.AutoShopBrasil.Domain\DN.AutoShopBrasil.Domain.csproj">
       <Project>{af1beb55-8b74-4945-9764-ed3046884d84}</Project>
       <Name>DN.AutoShopBrasil.Domain</Name>
@@ -220,10 +224,6 @@
     <ProjectReference Include="..\DN.AutoShopBrasil.IoC\DN.AutoShopBrasil.IoC.csproj">
       <Project>{db346704-b407-4f36-bb1f-4324660bc29b}</Project>
       <Name>DN.AutoShopBrasil.IoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DN.AutoShopBrasil.MVC.Common\DN.AutoShopBrasil.Common.csproj">
-      <Project>{e1f645c1-08ee-4755-a310-d8b8b6366096}</Project>
-      <Name>DN.AutoShopBrasil.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
