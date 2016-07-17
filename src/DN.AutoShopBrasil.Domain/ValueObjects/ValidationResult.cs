@@ -7,21 +7,21 @@ namespace DN.AutoShopBrasil.Domain.ValueObjects
     {
         private readonly List<ValidationError> _errors = new List<ValidationError>();
 
-        public string Mensagem { get; set; }
+        internal string Mensagem { get; set; }
         public bool IsValid { get { return _errors.Count == 0; } }
 
         public IEnumerable<ValidationError> Erros { get { return _errors; } }
-        public void AdicionarErro(ValidationError error)
+        internal void AdicionarErro(ValidationError error)
         {
             _errors.Add(error);
         }
-        public void RemoverErro(ValidationError error)
+        internal void RemoverErro(ValidationError error)
         {
             if (_errors.Contains(error))
                 _errors.Remove(error);
         }
 
-        public void AdicionarErro(params ValidationResult[] resultadoValidacao)
+        internal void AdicionarErro(params ValidationResult[] resultadoValidacao)
         {
             if (resultadoValidacao == null) return;
 

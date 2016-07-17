@@ -7,25 +7,37 @@ namespace DN.AutoShopBrasil.Domain.Entities
 {
     public class Anunciante
     {
-        public Anunciante()
+        protected Anunciante() { }
+        public Anunciante(string nome, string email, string senha, string telefone)
         {
             AnuncianteId = Guid.NewGuid();
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+            Telefone = telefone;
+            DataCadastro = DateTime.Now;
+
             ValidationResult = new ValidationResult();
         }
 
-        public Guid AnuncianteId { get; set; }
-        public string Nome { get;  set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public string Telefone { get; set; }
-        public DateTime DataCadastro { get; set; }
+        public Guid AnuncianteId { get; protected set; }
+        public string Nome { get;  protected set; }
+        public string Email { get; protected set; }
+        public string Senha { get; protected set; }
+        public string Telefone { get; protected set; }
+        public DateTime DataCadastro { get; protected set; }
         public ValidationResult ValidationResult { get; private set; }
 
         public override string ToString()
         {
             return Nome;
         }
-
+        public void AlterarAnunciante(string nome, string email, string telefone)
+        {
+            Nome = nome;
+            Email = email;
+            Telefone = telefone;
+        }
         public void CriptografarSenha()
         {
             Senha = Senha.Encrypt();

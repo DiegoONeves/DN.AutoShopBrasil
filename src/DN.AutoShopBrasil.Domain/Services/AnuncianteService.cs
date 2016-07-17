@@ -16,12 +16,6 @@ namespace DN.AutoShopBrasil.Domain.Services
         {
             _anuncianteRepository = anuncianteRepository;
         }
-        public ValidationResult AlterarAnunciante(Anunciante anunciante)
-        {
-            return null;
-
-        }
-
         public ValidationResult CadastrarNovoAnunciante(Anunciante anunciante)
         {
             if (!anunciante.IsValid())
@@ -34,6 +28,20 @@ namespace DN.AutoShopBrasil.Domain.Services
             _anuncianteRepository.Add(anunciante);
 
             return validationResult;
+        }
+
+        public ValidationResult AlterarAnunciante(Anunciante anunciante)
+        {
+            if (!anunciante.IsValid())
+                return anunciante.ValidationResult;
+
+            if (_anuncianteRepository.GetByEmail(anunciante.Email) != null)
+                validationResult.AdicionarErro(new ValidationError($"O e-mail {anunciante.Email} já foi cadastrado."));
+
+            _anuncianteRepository.Update(anunciante);
+
+            return validationResult;
+
         }
 
         public void Dispose()

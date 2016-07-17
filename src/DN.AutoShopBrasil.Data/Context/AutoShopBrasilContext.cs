@@ -40,23 +40,6 @@ namespace DN.AutoShopBrasil.Data.Context
             modelBuilder.Configurations.Add(new AnuncianteConfiguration());
         }
 
-        public override int SaveChanges()
-        {
-            var dataHora = DateTime.Now;
-            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
-            {
-                if (entry.State == EntityState.Added)
-                {
-                    entry.Property("DataCadastro").CurrentValue = dataHora;
-                }
-
-                if (entry.State == EntityState.Modified)
-                {
-                    entry.Property("DataCadastro").IsModified = false;
-                }
-            }
-
-            return base.SaveChanges();
-        }
+       
     }
 }
