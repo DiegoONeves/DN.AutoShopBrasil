@@ -63,12 +63,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DN.AutoShopBrasil.Domain\DN.AutoShopBrasil.Domain\DN.AutoShopBrasil.Domain.csproj">
-      <Project>{AF1BEB55-8B74-4945-9764-ED3046884D84}</Project>
+    <ProjectReference Include="..\DN.AutoShopBrasil.Domain\DN.AutoShopBrasil.Domain.csproj">
+      <Project>{af1beb55-8b74-4945-9764-ed3046884d84}</Project>
       <Name>DN.AutoShopBrasil.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

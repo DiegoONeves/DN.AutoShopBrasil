@@ -212,7 +212,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DN.AutoShopBrasil.Domain\DN.AutoShopBrasil.Domain\DN.AutoShopBrasil.Domain.csproj">
+    <ProjectReference Include="..\DN.AutoShopBrasil.Domain\DN.AutoShopBrasil.Domain.csproj">
       <Project>{af1beb55-8b74-4945-9764-ed3046884d84}</Project>
       <Name>DN.AutoShopBrasil.Domain</Name>
     </ProjectReference>
