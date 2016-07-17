@@ -55,14 +55,14 @@ namespace DN.AutoShopBrasil.MVC.Controllers
             return View(anuncianteModel);
         }
 
-        public ActionResult Alterar()
+        public ActionResult Editar()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Alterar(AnuncianteEdicaoModel anuncianteEdicaoModel)
+        public ActionResult Editar(AnuncianteEdicaoModel anuncianteEdicaoModel)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace DN.AutoShopBrasil.MVC.Controllers
                 var anuncianteDomain = _anuncianteRepository.GetById(anuncianteEdicaoModel.AnuncianteId);
                 anuncianteDomain.AlterarAnunciante(anuncianteEdicaoModel.Nome, anuncianteEdicaoModel.Email, anuncianteEdicaoModel.Telefone);
 
-                var result = _anuncianteService.AlterarAnunciante(anuncianteDomain);
+                var result = _anuncianteService.EditarAnunciante(anuncianteDomain);
 
                 if (result.IsValid)
                 {

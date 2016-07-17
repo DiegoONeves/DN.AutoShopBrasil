@@ -22,7 +22,7 @@ namespace DN.AutoShopBrasil.Domain.Services
                 return anunciante.ValidationResult;
 
             if (_anuncianteRepository.GetByEmail(anunciante.Email) != null)
-                validationResult.AdicionarErro(new ValidationError($"O e-mail {anunciante.Email} já foi cadastrado."));
+                validationResult.AdicionarErro(new ValidationError("Este e-mail já foi cadastrado por outro anunciante."));
 
             anunciante.CriptografarSenha();
             _anuncianteRepository.Add(anunciante);
@@ -30,15 +30,17 @@ namespace DN.AutoShopBrasil.Domain.Services
             return validationResult;
         }
 
-        public ValidationResult AlterarAnunciante(Anunciante anunciante)
+        public ValidationResult EditarAnunciante(Anunciante anuncianteParaEditar)
         {
-            if (!anunciante.IsValid())
-                return anunciante.ValidationResult;
+            if (!anuncianteParaEditar.IsValid())
+                return anuncianteParaEditar.ValidationResult;
 
-            if (_anuncianteRepository.GetByEmail(anunciante.Email) != null)
-                validationResult.AdicionarErro(new ValidationError($"O e-mail {anunciante.Email} já foi cadastrado."));
+            var anuncianteDb = _anuncianteRepository.GetByEmail(anuncianteParaEditar.Email);
 
-            _anuncianteRepository.Update(anunciante);
+            if (!anuncianteParaEditar.Equals(anuncianteDb))
+                validationResult.AdicionarErro(new ValidationError("Este e-mail já foi cadastrado por outro anunciante."));
+
+            _anuncianteRepository.Update(anuncianteParaEditar);
 
             return validationResult;
 

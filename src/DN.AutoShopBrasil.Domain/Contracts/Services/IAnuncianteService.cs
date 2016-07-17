@@ -6,7 +6,7 @@ namespace DN.AutoShopBrasil.Domain.Contracts.Services
 {
     public interface IAnuncianteService: IDisposable
     {
-        ValidationResult CadastrarNovoAnunciante(Anunciante anunciante);
-        ValidationResult AlterarAnunciante(Anunciante anunciante);
+        ValidationResult CadastrarNovoAnunciante(Anunciante anuncianteNovo);
+        ValidationResult EditarAnunciante(Anunciante anuncianteParaEditar);
     }
 }

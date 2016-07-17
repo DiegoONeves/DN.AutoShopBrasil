@@ -32,6 +32,12 @@ namespace DN.AutoShopBrasil.Domain.Entities
         {
             return Nome;
         }
+        public override bool Equals(object obj)
+        {
+            Anunciante anunciante = (Anunciante)obj;
+
+            return AnuncianteId == anunciante.AnuncianteId; 
+        }
         public void AlterarAnunciante(string nome, string email, string telefone)
         {
             Nome = nome;
