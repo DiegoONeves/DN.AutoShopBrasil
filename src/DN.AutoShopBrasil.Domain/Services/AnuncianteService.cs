@@ -19,6 +19,7 @@ namespace DN.AutoShopBrasil.Domain.Services
         public ValidationResult AlterarAnunciante(Anunciante anunciante)
         {
             return null;
+
         }
 
         public ValidationResult CadastrarNovoAnunciante(Anunciante anunciante)
