@@ -11,10 +11,12 @@ namespace DN.AutoShopBrasil.Domain.ValueObjects
         public bool IsValid { get { return _errors.Count == 0; } }
 
         public IEnumerable<ValidationError> Erros { get { return _errors; } }
+
         internal void AdicionarErro(ValidationError error)
         {
             _errors.Add(error);
         }
+
         internal void RemoverErro(ValidationError error)
         {
             if (_errors.Contains(error))
