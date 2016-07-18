@@ -31,7 +31,7 @@ namespace DN.AutoShopBrasil.Data.EntityConfig
                 .HasMaxLength(32)
                 .IsFixedLength();
 
-            Ignore(x => x.ValidationResult);
+            Ignore(x => x.ResultadoValidacao);
         }
     }
 }

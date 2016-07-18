@@ -1,7 +1,7 @@
-﻿using DN.AutoShopBrasil.Common.ExtensionMethods;
-using DN.AutoShopBrasil.Domain.Contracts.Repositories;
+﻿using DN.AutoShopBrasil.Domain.Contracts.Repositories;
 using DN.AutoShopBrasil.Domain.Contracts.Services;
 using DN.AutoShopBrasil.Domain.Entities;
+using DN.AutoShopBrasil.Domain.Validation.AnuncianteValidation;
 using DN.AutoShopBrasil.Domain.ValueObjects;
 using System;
 
@@ -9,38 +9,37 @@ namespace DN.AutoShopBrasil.Domain.Services
 {
     public class AnuncianteService : IAnuncianteService
     {
-        private ValidationResult validationResult = new ValidationResult();
+        private ValidationResult validationResult = null;
         private readonly IAnuncianteRepository _anuncianteRepository;
 
         public AnuncianteService(IAnuncianteRepository anuncianteRepository)
         {
             _anuncianteRepository = anuncianteRepository;
         }
-        public ValidationResult CadastrarNovoAnunciante(Anunciante anunciante)
+        public ValidationResult CadastrarNovoAnunciante(Anunciante anuncianteNovo)
         {
-            if (!anunciante.IsValid())
-                return anunciante.ValidationResult;
+            if (!anuncianteNovo.IsValid())
+                return anuncianteNovo.ResultadoValidacao;
 
-            if (_anuncianteRepository.GetByEmail(anunciante.Email) != null)
-                validationResult.AdicionarErro(new ValidationError("Este e-mail já foi cadastrado por outro anunciante."));
+            validationResult = new AnuncianteEstaConsistenteValidation(_anuncianteRepository).Validar(anuncianteNovo);
 
-            anunciante.CriptografarSenha();
-            _anuncianteRepository.Add(anunciante);
-
+            if (validationResult.IsValid)
+            {
+                anuncianteNovo.CriptografarSenha();
+                _anuncianteRepository.Add(anuncianteNovo);
+            }
             return validationResult;
         }
 
         public ValidationResult EditarAnunciante(Anunciante anuncianteParaEditar)
         {
             if (!anuncianteParaEditar.IsValid())
-                return anuncianteParaEditar.ValidationResult;
+                return anuncianteParaEditar.ResultadoValidacao;
 
-            var anuncianteDb = _anuncianteRepository.GetByEmail(anuncianteParaEditar.Email);
+            validationResult = new AnuncianteEstaConsistenteValidation(_anuncianteRepository).Validar(anuncianteParaEditar);
 
-            if (!anuncianteParaEditar.Equals(anuncianteDb))
-                validationResult.AdicionarErro(new ValidationError("Este e-mail já foi cadastrado por outro anunciante."));
-
-            _anuncianteRepository.Update(anuncianteParaEditar);
+            if (validationResult.IsValid)
+                _anuncianteRepository.Update(anuncianteParaEditar);
 
             return validationResult;
 

@@ -3,12 +3,13 @@ using DN.AutoShopBrasil.Domain.Contracts.Infra;
 using DN.AutoShopBrasil.Domain.Contracts.Repositories;
 using DN.AutoShopBrasil.Domain.Contracts.Services;
 using DN.AutoShopBrasil.Domain.Entities;
-using DN.AutoShopBrasil.Domain.ValueObjects;
 using DN.AutoShopBrasil.MVC.Models;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace DN.AutoShopBrasil.MVC.Controllers
 {
+    [Authorize]
     public class AnuncianteController : BaseController
     {
         private readonly IAnuncianteService _anuncianteService;
@@ -28,6 +29,7 @@ namespace DN.AutoShopBrasil.MVC.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Cadastrar()
         {
             return View();
@@ -57,7 +59,16 @@ namespace DN.AutoShopBrasil.MVC.Controllers
 
         public ActionResult Editar()
         {
-            return View();
+            var anuncianteParaEditar = _anuncianteRepository.GetByEmail(ObterEmailTicket());
+
+            var model = new AnuncianteEdicaoModel
+            {
+                AnuncianteId = anuncianteParaEditar.AnuncianteId,
+                Nome = anuncianteParaEditar.Nome,
+                Email = anuncianteParaEditar.Email,
+                Telefone = anuncianteParaEditar.Telefone
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -69,14 +80,15 @@ namespace DN.AutoShopBrasil.MVC.Controllers
                 _unityOfWork.BeginTransaction();
 
                 var anuncianteDomain = _anuncianteRepository.GetById(anuncianteEdicaoModel.AnuncianteId);
-                anuncianteDomain.AlterarAnunciante(anuncianteEdicaoModel.Nome, anuncianteEdicaoModel.Email, anuncianteEdicaoModel.Telefone);
+                anuncianteDomain.AlterarAnunciante(anuncianteEdicaoModel.Nome, anuncianteEdicaoModel.Email, anuncianteEdicaoModel.Telefone.ClearPhoneNumber());
 
                 var result = _anuncianteService.EditarAnunciante(anuncianteDomain);
 
                 if (result.IsValid)
                 {
                     _unityOfWork.Commit();
-                    return RedirectToAction("Index");
+                    FormsAuthentication.SignOut();
+                    return RedirectToAction("Login", "Autenticacao");
                 }
 
                 AddModelError(result.Erros);

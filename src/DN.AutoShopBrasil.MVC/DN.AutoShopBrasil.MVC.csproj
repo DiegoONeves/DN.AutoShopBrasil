@@ -156,6 +156,7 @@
     </Compile>
     <Compile Include="Models\AnuncianteEdicaoModel.cs" />
     <Compile Include="Models\AnuncianteModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,10 +198,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Anunciante\Cadastrar.cshtml" />
     <Content Include="Views\Anunciante\Index.cshtml" />
+    <Content Include="Views\Autenticacao\Login.cshtml" />
+    <Content Include="Views\Anunciante\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Autenticacao\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Compra\" />
     <Folder Include="Views\Venda\" />

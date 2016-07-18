@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DN.AutoShopBrasil.Common.ExtensionMethods
 {
@@ -11,6 +12,11 @@ namespace DN.AutoShopBrasil.Common.ExtensionMethods
                 return string.Empty;
 
             return target.Trim().Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+        }
+
+        public static bool IsEmail(this string target)
+        {
+            return Regex.IsMatch(target, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
         }
 
         public static string Encrypt(this string target)
