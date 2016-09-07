@@ -29,9 +29,7 @@ namespace DN.AutoShopBrasil.Domain.Entities
         public string Telefone { get; protected set; }
         public DateTime DataCadastro { get; protected set; }
         public ValidationResult ResultadoValidacao { get; private set; }
-
-     
-       
+    
         public override string ToString()
         {
             return Nome;

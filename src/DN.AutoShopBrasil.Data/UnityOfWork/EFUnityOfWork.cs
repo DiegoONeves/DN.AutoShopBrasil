@@ -1,5 +1,5 @@
 ﻿using DN.AutoShopBrasil.Data.Context;
-using DN.AutoShopBrasil.Domain.Contracts.Infra;
+using DN.AutoShopBrasil.Data.Interfaces;
 using System;
 
 namespace DN.AutoShopBrasil.Data.UnityOfWork

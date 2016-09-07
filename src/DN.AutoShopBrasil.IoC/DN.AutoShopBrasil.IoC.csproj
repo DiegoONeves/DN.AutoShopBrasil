@@ -62,6 +62,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DN.AutoShopBrasil.Application\DN.AutoShopBrasil.Application.csproj">
+      <Project>{B2B7562A-00DA-4801-AABE-B5EC33EE2B02}</Project>
+      <Name>DN.AutoShopBrasil.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DN.AutoShopBrasil.Data\DN.AutoShopBrasil.Data.csproj">
       <Project>{374c00f4-50bc-46cd-b270-e5c9a65469b1}</Project>
       <Name>DN.AutoShopBrasil.Data</Name>

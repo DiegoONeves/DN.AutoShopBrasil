@@ -1,7 +1,5 @@
 ﻿using DN.AutoShopBrasil.Data.EntityConfig;
 using DN.AutoShopBrasil.Domain.Entities;
-using System;
-using System.Linq;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -14,10 +12,11 @@ namespace DN.AutoShopBrasil.Data.Context
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
-            ContextId = Guid.NewGuid();
         }
-        public Guid  ContextId { get; set; }
         public DbSet<Anunciante> Anunciantes { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
+        public DbSet<Modelo> Modelos { get; set; }
+        public DbSet<AnoModelo> AnoModelo { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -38,8 +37,11 @@ namespace DN.AutoShopBrasil.Data.Context
                 .Configure(p => p.HasMaxLength(100));
 
             modelBuilder.Configurations.Add(new AnuncianteConfiguration());
+            modelBuilder.Configurations.Add(new MarcaConfiguration());
+            modelBuilder.Configurations.Add(new ModeloConfiguration());
+            modelBuilder.Configurations.Add(new AnoModeloConfiguration());
         }
 
-       
+
     }
 }

@@ -4,16 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{374C00F4-50BC-46CD-B270-E5C9A65469B1}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{EA1C068F-2E8A-4367-A086-4C135E0AFE4F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DN.AutoShopBrasil.Data</RootNamespace>
-    <AssemblyName>DN.AutoShopBrasil.Data</AssemblyName>
+    <RootNamespace>DN.AtualizacaoModelos</RootNamespace>
+    <AssemblyName>DN.AtualizacaoModelos</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,9 +42,14 @@
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,23 +58,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\AutoShopBrasilContext.cs" />
-    <Compile Include="EntityConfig\AnoModeloConfiguration.cs" />
-    <Compile Include="EntityConfig\AnuncianteConfiguration.cs" />
-    <Compile Include="EntityConfig\MarcaConfiguration.cs" />
-    <Compile Include="EntityConfig\ModeloConfiguration.cs" />
-    <Compile Include="Interfaces\IUnityOfWork.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="DTO\CarroDTO.cs" />
+    <Compile Include="DTO\MarcaDTO.cs" />
+    <Compile Include="DTO\ModeloDTO.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AnuncianteRepository.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="UnityOfWork\EFUnityOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DN.AutoShopBrasil.Data\DN.AutoShopBrasil.Data.csproj">
+      <Project>{374c00f4-50bc-46cd-b270-e5c9a65469b1}</Project>
+      <Name>DN.AutoShopBrasil.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DN.AutoShopBrasil.Domain\DN.AutoShopBrasil.Domain.csproj">
       <Project>{af1beb55-8b74-4945-9764-ed3046884d84}</Project>
       <Name>DN.AutoShopBrasil.Domain</Name>
