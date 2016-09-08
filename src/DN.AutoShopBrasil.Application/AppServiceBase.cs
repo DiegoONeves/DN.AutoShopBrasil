@@ -1,5 +1,4 @@
 ﻿using DN.AutoShopBrasil.Application.Interfaces;
-using DN.AutoShopBrasil.Application.Validation;
 using DN.AutoShopBrasil.Data.Interfaces;
 using DN.AutoShopBrasil.Domain.ValueObjects;
 
@@ -22,17 +21,6 @@ namespace DN.AutoShopBrasil.Application
             _unityOfWork.Commit();
         }
 
-        protected ValidationAppResult DomainToApplicationResult(ValidationResult result)
-        {
-            var validationAppResult = new ValidationAppResult();
-
-            foreach (var validationError in result.Erros)
-            {
-                validationAppResult.Erros.Add(new ValidationAppError(validationError.Message));
-            }
-            validationAppResult.IsValid = result.IsValid;
-
-            return validationAppResult;
-        }
+      
     }
 }

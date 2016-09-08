@@ -41,8 +41,8 @@ namespace DN.AutoShopBrasil.Domain.Entities
 
             var fiscal = new AnuncianteAptoParaAlterarSenhaValidation();
             ResultadoValidacao = fiscal.Validar(this);
-
         }
+
         public void AlterarAnunciante(string nome, string email, string telefone)
         {          
             Nome = nome;

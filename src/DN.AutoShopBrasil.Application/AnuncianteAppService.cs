@@ -1,10 +1,10 @@
 ﻿using DN.AutoShopBrasil.Application.DTO;
 using DN.AutoShopBrasil.Application.Interfaces;
-using DN.AutoShopBrasil.Application.Validation;
 using DN.AutoShopBrasil.Common.ExtensionMethods;
 using DN.AutoShopBrasil.Data.Interfaces;
 using DN.AutoShopBrasil.Domain.Contracts.Services;
 using DN.AutoShopBrasil.Domain.Entities;
+using DN.AutoShopBrasil.Domain.ValueObjects;
 using System;
 
 namespace DN.AutoShopBrasil.Application
@@ -19,7 +19,12 @@ namespace DN.AutoShopBrasil.Application
             _anuncianteService = anuncianteService;
         }
 
-        public ValidationAppResult CadastrarAnunciante(AnuncianteNovoDTO anuncianteNovo)
+        public Anunciante Autenticar(string email, string senha)
+        {
+            return null;
+        }
+
+        public ValidationResult CadastrarAnunciante(AnuncianteNovoDTO anuncianteNovo)
         {
             var anuncianteDomain = new Anunciante(anuncianteNovo.Nome, anuncianteNovo.Email, anuncianteNovo.Senha, anuncianteNovo.Telefone.ClearPhoneNumber());
 
@@ -30,7 +35,7 @@ namespace DN.AutoShopBrasil.Application
             if (result.IsValid)
                 Commit();
 
-            return DomainToApplicationResult(result);
+            return result;
         }
     }
 }
