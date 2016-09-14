@@ -21,10 +21,15 @@ namespace DN.AutoShopBrasil.API
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
-
-            var container = ConfigureDependencyInjection(config);
-            ConfigureOAuth(app, container.GetInstance<IAnuncianteAppService>());
             ConfigureWebApi(config);
+            Container container = ConfigureDependencyInjection(config);
+
+
+            var a = container.GetInstance(typeof(IAnuncianteAppService));
+
+
+            ConfigureOAuth(app, a);
+
 
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
@@ -60,7 +65,7 @@ namespace DN.AutoShopBrasil.API
 
             // Register your types, for instance using the scoped lifestyle:
             BootStrapper.RegisterServices(container);
-
+            container.Verify();
             config.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
 
             return container;

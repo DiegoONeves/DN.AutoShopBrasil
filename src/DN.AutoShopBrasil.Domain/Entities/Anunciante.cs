@@ -1,12 +1,10 @@
 ﻿using DN.AutoShopBrasil.Common.ExtensionMethods;
-using DN.AutoShopBrasil.Domain.Validation.Abstract;
-using DN.AutoShopBrasil.Domain.Validation.AnuncianteValidation;
 using DN.AutoShopBrasil.Domain.ValueObjects;
 using System;
 
 namespace DN.AutoShopBrasil.Domain.Entities
 {
-    public class Anunciante: ISelfValidator
+    public class Anunciante
     {
         protected Anunciante() { }
         public Anunciante(string nome, string email, string senha, string telefone)
@@ -17,9 +15,6 @@ namespace DN.AutoShopBrasil.Domain.Entities
             Senha = senha;
             Telefone = telefone;
             DataCadastro = DateTime.Now;
-
-            var fiscal = new AnuncianteAptoParaCadastroValidation();
-            ResultadoValidacao = fiscal.Validar(this);
         }
 
         public Guid AnuncianteId { get; protected set; }
@@ -38,9 +33,6 @@ namespace DN.AutoShopBrasil.Domain.Entities
         public void AlterarSenha(string novaSenha)
         {
             Senha = novaSenha;
-
-            var fiscal = new AnuncianteAptoParaAlterarSenhaValidation();
-            ResultadoValidacao = fiscal.Validar(this);
         }
 
         public void AlterarAnunciante(string nome, string email, string telefone)
@@ -49,8 +41,6 @@ namespace DN.AutoShopBrasil.Domain.Entities
             Email = email;
             Telefone = telefone;
 
-            var fiscal = new AnuncianteAptoParaEditarValidation();
-            ResultadoValidacao = fiscal.Validar(this);
         }
         public void CriptografarSenha()
         {

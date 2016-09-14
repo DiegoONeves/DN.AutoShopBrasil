@@ -43,21 +43,6 @@
     <Compile Include="Entities\Modelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AnuncianteService.cs" />
-    <Compile Include="Specification\AnuncianteSpecs\EmailDeveSerUnicoSpecification.cs" />
-    <Compile Include="Specification\AnuncianteSpecs\EmailDeveSerValidoSpecification.cs" />
-    <Compile Include="Specification\AnuncianteSpecs\NomeDeveTerEntre3E30CaracteresSpecification.cs" />
-    <Compile Include="Specification\AnuncianteSpecs\SenhaDeveTerEntre6E20CaracteresSpecification.cs" />
-    <Compile Include="Specification\AnuncianteSpecs\TelefoneDeveSerValidadoSpecification.cs" />
-    <Compile Include="Specification\ISpecification.cs" />
-    <Compile Include="Validation\AnuncianteValidation\AnuncianteAptoParaAlterarSenhaValidation.cs" />
-    <Compile Include="Validation\AnuncianteValidation\AnuncianteAptoParaEditarValidation.cs" />
-    <Compile Include="Validation\AnuncianteValidation\AnuncianteAptoParaCadastroValidation.cs" />
-    <Compile Include="Validation\AnuncianteValidation\AnuncianteEstaConsistenteValidation.cs" />
-    <Compile Include="Validation\Concrete\FiscalBase.cs" />
-    <Compile Include="Validation\Abstract\IFiscal.cs" />
-    <Compile Include="Validation\Abstract\IRegra.cs" />
-    <Compile Include="Validation\Abstract\ISelfValidator.cs" />
-    <Compile Include="Validation\Regra.cs" />
     <Compile Include="ValueObjects\ValidationError.cs" />
     <Compile Include="ValueObjects\ValidationResult.cs" />
   </ItemGroup>
