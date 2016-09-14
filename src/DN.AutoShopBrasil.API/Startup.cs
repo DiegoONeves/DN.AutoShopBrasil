@@ -26,9 +26,10 @@ namespace DN.AutoShopBrasil.API
 
 
             var a = container.GetInstance(typeof(IAnuncianteAppService));
+            IAnuncianteAppService service = (IAnuncianteAppService)a;
 
 
-            ConfigureOAuth(app, a);
+            ConfigureOAuth(app, service);
 
 
             app.UseCors(CorsOptions.AllowAll);
